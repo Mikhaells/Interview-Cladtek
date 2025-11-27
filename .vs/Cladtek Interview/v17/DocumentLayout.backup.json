@@ -1,14 +1,70 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\CPNS\\app\\Cladtek Interview\\",
+  "WorkspaceRootPath": "C:\\CPNS\\app\\Interview-Cladtek\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\cladtek interview\\views\\employee\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\overtime\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\overtime\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\overtime\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\overtime\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\overtime\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\overtime\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|C:\\CPNS\\app\\Interview-Cladtek\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\controllers\\overtimecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:controllers\\overtimecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\employee\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\employee\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\models\\overtimemanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:models\\overtimemanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\employee\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\employee\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\cladtek interview\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\employee\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\employee\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|c:\\cpns\\app\\interview-cladtek\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A1FF288-2BBD-40DE-A4C4-BCA54056D215}|Cladtek Interview.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +74,215 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeeController.cs",
-              "DocumentMoniker": "C:\\CPNS\\app\\Cladtek Interview\\Controllers\\EmployeeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
-              "ToolTip": "C:\\CPNS\\app\\Cladtek Interview\\Controllers\\EmployeeController.cs",
-              "RelativeToolTip": "Controllers\\EmployeeController.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAcwGYAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Employee\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Employee\\Index.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Employee\\Index.cshtml",
+              "RelativeToolTip": "Views\\Employee\\Index.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADgAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T00:46:42.984Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Web.config",
+              "RelativeDocumentMoniker": "Web.config",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Web.config",
+              "RelativeToolTip": "Web.config",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-11-27T03:19:51.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAFEAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T03:15:03.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OvertimeManagementContext.cs",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Models\\OvertimeManagementContext.cs",
+              "RelativeDocumentMoniker": "Models\\OvertimeManagementContext.cs",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Models\\OvertimeManagementContext.cs",
+              "RelativeToolTip": "Models\\OvertimeManagementContext.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAA1wAcAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T00:46:47.864Z",
+              "WhenOpened": "2025-11-27T01:21:31.967Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\CPNS\\app\\Cladtek Interview\\Views\\Employee\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Employee\\Index.cshtml",
-              "ToolTip": "C:\\CPNS\\app\\Cladtek Interview\\Views\\Employee\\Index.cshtml",
-              "RelativeToolTip": "Views\\Employee\\Index.cshtml",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAHEAAAAVAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Overtime\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Overtime\\Index.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Overtime\\Index.cshtml",
+              "RelativeToolTip": "Views\\Overtime\\Index.cshtml",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAcwBUAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-27T00:46:42.984Z",
+              "WhenOpened": "2025-11-27T01:06:18.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OvertimeController.cs",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Controllers\\OvertimeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OvertimeController.cs",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Controllers\\OvertimeController.cs",
+              "RelativeToolTip": "Controllers\\OvertimeController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAmwDwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T00:59:26.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADwvz0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T00:46:47.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Overtime\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Overtime\\Edit.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Overtime\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Overtime\\Edit.cshtml",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAiwGEAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T03:18:28.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Overtime\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Overtime\\Create.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Overtime\\Create.cshtml*",
+              "RelativeToolTip": "Views\\Overtime\\Create.cshtml*",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAEIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T01:09:59.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Employee\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Employee\\Create.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Employee\\Create.cshtml",
+              "RelativeToolTip": "Views\\Employee\\Create.cshtml",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAGwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T03:15:51.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Employee\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Employee\\Edit.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Employee\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Employee\\Edit.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAHAAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T03:16:33.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T01:27:16.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAADwAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T01:27:21.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T03:14:55.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\Error.cshtml",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "Views\\Shared\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T03:19:46.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Web.config",
+              "RelativeDocumentMoniker": "Views\\Web.config",
+              "ToolTip": "C:\\CPNS\\app\\Interview-Cladtek\\Views\\Web.config",
+              "RelativeToolTip": "Views\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-11-27T03:19:49.423Z",
               "EditorCaption": ""
             }
           ]

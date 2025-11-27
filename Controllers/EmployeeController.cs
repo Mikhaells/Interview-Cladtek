@@ -29,7 +29,7 @@ namespace OvertimeManagementApp.Controllers
             LoadDepartments();
             var employee = new Employee();
             employee.EmployeeId = 0;
-            return View(employee); 
+            return View(employee);
         }
 
         // POST: Employee/Create
@@ -106,28 +106,30 @@ namespace OvertimeManagementApp.Controllers
 
         // POST: Employee/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        // HAPUS BARIS INI:
+        // [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             try
             {
                 var employee = db.Employees.Find(id);
                 if (employee == null)
-                    return Json(new { success = false, message = "Employee not found" });
+                    return Json(new { success = false, message = "Employee not found" }, JsonRequestBehavior.AllowGet);
 
                 // Check if employee has overtime entry
                 if (db.Overtimes.Any(o => o.EmployeeId == id))
                 {
-                    return Json(new { success = false, message = "Cannot delete employee with overtime entry" });
+                    return Json(new { success = false, message = "Cannot delete employee with overtime entry" }, JsonRequestBehavior.AllowGet);
                 }
 
                 db.Employees.Remove(employee);
                 db.SaveChanges();
-                return Json(new { success = true, message = "Employee deleted successfully" });
+
+                return Json(new { success = true, message = "Employee deleted successfully" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = "Error: " + ex.Message });
+                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 

@@ -1,8 +1,21 @@
-﻿@model Cladtek_Interview.Models.Overtime
+﻿﻿@model Cladtek_Interview.Models.Overtime
 
 @{
     ViewBag.Title = Model.OvertimeId == 0 ? "Add New Overtime" : "Edit Overtime";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Deklarasi variabel di level view agar bisa diakses di seluruh bagian
+    var overtimeDate = Model.OvertimeDate != DateTime.MinValue ?
+        Model.OvertimeDate.ToString("yyyy-MM-dd") :
+        DateTime.Now.ToString("yyyy-MM-dd");
+
+    var timeStartValue = Model.TimeStart != DateTime.MinValue ?
+        Model.TimeStart.ToString("HH:mm") :
+        "";
+
+    var timeFinishValue = Model.TimeFinish != DateTime.MinValue ?
+        Model.TimeFinish.ToString("HH:mm") :
+        "";
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
@@ -29,72 +42,66 @@
                     }
 
                     <div class="box-body">
-                        <!-- Employee -->
                         <div class="form-group">
                             <label>Employee <span class="text-red">*</span></label>
                             @Html.DropDownListFor(m => m.EmployeeId,
-                                new SelectList(ViewBag.Employees, "EmployeeId", "EmployeeName"),
+                                new SelectList(ViewBag.Employees, "EmployeeId", "EmployeeName", Model.EmployeeId),
                                 "-- Select Employee --",
                                 new { @class = "form-control", @id = "EmployeeId" })
                             @Html.ValidationMessageFor(m => m.EmployeeId, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Overtime Date -->
                         <div class="form-group">
                             <label>Overtime Date <span class="text-red">*</span></label>
                             @Html.TextBoxFor(m => m.OvertimeDate,
-                                new { @class = "form-control", @type = "date", @id = "OvertimeDate" })
+                                new
+                                     {
+                                    @class = "form-control",
+                                    @type = "date",
+                                    @id = "OvertimeDate",
+                                    @Value = overtimeDate
+                                })
                             @Html.ValidationMessageFor(m => m.OvertimeDate, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Time Start -->
                         <div class="form-group">
                             <label>Time Start <span class="text-red">*</span></label>
                             <div class='input-group date' id='datetimeStart'>
                                 @Html.TextBoxFor(m => m.TimeStart,
-                                    new { @class = "form-control", @placeholder = "HH:mm", @id = "TimeStart" })
+                                    new
+                                         {
+                                        @class = "form-control",
+                                        @placeholder = "HH:mm",
+                                        @id = "TimeStart",
+                                        @Value = timeStartValue
+                                    })
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
                             </div>
                             @Html.ValidationMessageFor(m => m.TimeStart, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Time Finish -->
                         <div class="form-group">
                             <label>Time Finish <span class="text-red">*</span></label>
                             <div class='input-group date' id='datetimeFinish'>
                                 @Html.TextBoxFor(m => m.TimeFinish,
-                                    new { @class = "form-control", @placeholder = "HH:mm", @id = "TimeFinish" })
+                                    new
+                                         {
+                                        @class = "form-control",
+                                        @placeholder = "HH:mm",
+                                        @id = "TimeFinish",
+                                        @Value = timeFinishValue
+                                    })
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
                             </div>
                             @Html.ValidationMessageFor(m => m.TimeFinish, "", new { @class = "text-red" })
-                        </div>
-
-                        <!-- Actual OT Hours (Read Only) -->
-                        <div class="form-group">
-                            <label>Actual OT Hours (Auto) <span class="text-red">*</span></label>
-                            @Html.TextBoxFor(m => m.ActualOTHours,
-                                new { @class = "form-control", @readonly = "readonly", @id = "ActualOTHours" })
-                        </div>
-
-                        <!-- Calculated OT Hours (Read Only) -->
-                        <div class="form-group">
-                            <label>Calculated OT Hours (Auto)</label>
-                            @Html.TextBoxFor(m => m.CalculatedOTHours,
-                                new { @class = "form-control", @readonly = "readonly", @id = "CalculatedOTHours" })
-                        </div>
-
-                        <!-- Description -->
+                        </div> 
                         <div class="form-group">
                             <label>Description</label>
                             @Html.TextAreaFor(m => m.Description,
                                 new { @class = "form-control", @rows = "3", @placeholder = "Enter description" })
                         </div>
                     </div>
-
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-save"></i> Save
@@ -115,7 +122,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            // Initialize date pickers
+            // Initialize datetime pickers
             $('#datetimeStart').datetimepicker({
                 format: 'HH:mm',
                 stepping: 15
@@ -126,7 +133,23 @@
                 stepping: 15
             });
 
-            // Calculate OT Hours when time changes
+            // Set values from server
+            @if (!string.IsNullOrEmpty(timeStartValue))
+            {
+                <text>
+                $('#TimeStart').val('@timeStartValue');
+                $('#datetimeStart').data("DateTimePicker").date('@timeStartValue');
+                </text>
+            }
+
+            @if (!string.IsNullOrEmpty(timeFinishValue))
+            {
+                <text>
+                $('#TimeFinish').val('@timeFinishValue');
+                $('#datetimeFinish').data("DateTimePicker").date('@timeFinishValue');
+                </text>
+            }
+
             $('#TimeStart, #TimeFinish').on('change.datetimepicker', function () {
                 calculateOTHours();
             });
@@ -136,29 +159,22 @@
                 var timeFinishVal = $('#TimeFinish').val();
 
                 if (timeStartVal && timeFinishVal) {
-                    // Parse times
                     var startParts = timeStartVal.split(':');
                     var finishParts = timeFinishVal.split(':');
-
                     var startHours = parseInt(startParts[0]);
                     var startMinutes = parseInt(startParts[1]);
                     var finishHours = parseInt(finishParts[0]);
                     var finishMinutes = parseInt(finishParts[1]);
-
-                    // Convert to minutes
                     var startTotalMinutes = startHours * 60 + startMinutes;
                     var finishTotalMinutes = finishHours * 60 + finishMinutes;
 
-                    // Handle case where finish time is next day
                     if (finishTotalMinutes < startTotalMinutes) {
                         finishTotalMinutes += 24 * 60;
                     }
 
-                    // Calculate difference in hours
                     var diffMinutes = finishTotalMinutes - startTotalMinutes;
                     var diffHours = diffMinutes / 60;
 
-                    // Validate
                     if (diffHours <= 0) {
                         alert('Time Finish must be after Time Start');
                         $('#TimeFinish').val('');
@@ -175,16 +191,13 @@
                         return;
                     }
 
-                    // Set actual OT hours
                     $('#ActualOTHours').val(diffHours.toFixed(2));
-
-                    // Calculate and set calculated OT hours (actual * 2)
                     var calculatedHours = diffHours * 2;
                     $('#CalculatedOTHours').val(calculatedHours.toFixed(2));
                 }
             }
 
-            // Initial calculation if form is editing
+            // Calculate initial OT hours if times are already set
             calculateOTHours();
         });
     </script>

@@ -1,4 +1,4 @@
-﻿@using PagedList;
+﻿﻿@using PagedList;
 @using PagedList.Mvc;
 
 @model IPagedList<Cladtek_Interview.Models.Employee>
@@ -9,7 +9,7 @@
 }
 
 <div class="content-header">
-    <h1>Employee Management <small>Manage employee data</small></h1>
+    <h1>Employee Management</h1>
 </div>
 
 <div class="content">
@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">List of Employee Data</h3>
+                    <h3 class="box-title">LIST OF THE EMPLOYE DATA</h3>
                     <div class="box-tools pull-right">
                         <a href="@Url.Action("Create")" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus"></i> Add New Employee
@@ -29,15 +29,12 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th style="width: 10%">#</th>
+                                <th style="width: 10%">No</th>
                                 <th>NIK</th>
                                 <th>Name</th>
                                 <th>Department</th>
                                 <th>Position</th>
-                                <th>Email</th>
-                                <th>Laptop</th>
-                                <th>Meal</th>
-                                <th style="width: 15%">Action</th>
+                                <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,33 +47,12 @@
                                     <td>@item.EmployeeName</td>
                                     <td>@item.Department.DepartmentName</td>
                                     <td>@item.Position</td>
-                                    <td>@item.Email</td>
-                                    <td>
-                                        @if (item.HasLaptop)
-                                        {
-                                            <span class="label label-success">Yes</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="label label-danger">No</span>
-                                        }
-                                    </td>
-                                    <td>
-                                        @if (item.HasMealAllowance)
-                                        {
-                                            <span class="label label-success">Yes</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="label label-danger">No</span>
-                                        }
-                                    </td>
-                                    <td>
-                                        <a href="@Url.Action("Edit", new { id = item.EmployeeId })" class="btn btn-xs btn-info">
-                                            <i class="fa fa-edit"></i> Edit
+                                    <td style="text-align: center;">
+                                        <a href="@Url.Action("Edit", new { id = item.EmployeeId })" class="btn btn-xs btn-info" style="margin-right: 5px;" title="Edit">
+                                            <i class="fa fa-edit"></i>
                                         </a>
-                                        <button type="button" class="btn btn-xs btn-danger" onclick="deleteEmployee(@item.EmployeeId)">
-                                            <i class="fa fa-trash"></i> Delete
+                                        <button type="button" class="btn btn-xs btn-danger delete-employee-btn" data-employee-id="@item.EmployeeId" title="Delete">
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -92,7 +68,36 @@
                             <span>Page @Model.PageNumber of @Model.PageCount</span>
                         </div>
                         <div class="col-md-6 text-right">
-                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                            @if (Model.HasPreviousPage)
+                            {
+                                <a href="@Url.Action("Index", new { page = Model.PageNumber - 1 })" class="btn btn-default">
+                                    <
+                                </a>
+                            }
+
+                            @for (int i = 1; i <= Model.PageCount; i++)
+                            {
+                                if (i == Model.PageNumber)
+                                {
+                                    <span class="btn btn-primary">@i</span>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Index", new { page = i })" class="btn btn-default">@i</a>
+                                }
+
+                                if (i < Model.PageCount)
+                                {
+                                    <span> | </span>
+                                }
+                            }
+
+                            @if (Model.HasNextPage)
+                            {
+                                <a href="@Url.Action("Index", new { page = Model.PageNumber + 1 })" class="btn btn-default">
+                                    >
+                                </a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -101,21 +106,68 @@
     </div>
 </div>
 
+@Html.AntiForgeryToken()
+
 @section Scripts {
     <script type="text/javascript">
-    function deleteEmployee(id) {
-        if (confirm('Are you sure you want to delete this employee?')) {
-            $.post('@Url.Action("Delete", "Employee")', { id: id }, function (data) {
-                if (data.success) {
-                    alert(data.message);
-                    location.reload();
-                } else {
-                    alert('Error: ' + data.message);
+        $(document).ready(function () {
+            $(document).on('click', '.delete-employee-btn', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var employeeId = $(this).data('employee-id');
+                var employeeName = $(this).closest('tr').find('td:nth-child(3)').text();
+
+                if (!employeeId) {
+                    alert('Error: Employee ID not found');
+                    return false;
                 }
-            }).fail(function() {
-                alert('Error occurred while processing your request.');
+
+                if (confirm('Are you sure you want to delete employee: ' + employeeName + '?')) {
+                    var $btn = $(this);
+                    var $icon = $btn.find('i');
+                    $btn.prop('disabled', true);
+                    $icon.removeClass('fa-trash').addClass('fa-spinner fa-spin');
+                    var token = $('input[name="__RequestVerificationToken"]').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Delete", "Employee")',
+                        data: {
+                            id: employeeId,
+                            __RequestVerificationToken: token
+                        },
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.success) {
+                                alert(response.message);
+                                location.reload();
+                            } else {
+                                alert('Error: ' + response.message);
+                                $btn.prop('disabled', false);
+                                $icon.removeClass('fa-spinner fa-spin').addClass('fa-trash');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('AJAX Error:', error);
+                            console.error('Status:', status);
+                            console.error('Response:', xhr.responseText);
+                            var errorMessage = 'Error occurred while processing your request.';
+                            if (xhr.responseJSON && xhr.responseJSON.message) {
+                                errorMessage = xhr.responseJSON.message;
+                            } else if (xhr.statusText) {
+                                errorMessage = xhr.statusText;
+                            }
+
+                            alert(errorMessage);
+                            $btn.prop('disabled', false);
+                            $icon.removeClass('fa-spinner fa-spin').addClass('fa-trash');
+                        }
+                    });
+                }
+
+                return false;
             });
-        }
-    }
+        });
     </script>
 }

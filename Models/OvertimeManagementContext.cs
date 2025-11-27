@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace Cladtek_Interview.Models
-{
-    // Models
+{ 
     [Table("Department", Schema = "public")]
     public class Department
     {
@@ -115,13 +114,11 @@ namespace Cladtek_Interview.Models
         [ForeignKey("EmployeeId")]
         public virtual Employee Employee { get; set; }
     }
-
-    // DbContext untuk PostgreSQL
+     
     public class OvertimeManagementContext : DbContext
     {
         public OvertimeManagementContext() : base("OvertimeManagementDb")
-        {
-            // Optimization untuk PostgreSQL
+        { 
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer<OvertimeManagementContext>(null);
@@ -140,8 +137,7 @@ namespace Cladtek_Interview.Models
             modelBuilder.Entity<Department>().ToTable("Department", "public");
             modelBuilder.Entity<Employee>().ToTable("Employee", "public");
             modelBuilder.Entity<Overtime>().ToTable("Overtime", "public");
-
-            // Konfigurasi timestamp untuk PostgreSQL
+             
             modelBuilder.Entity<Employee>()
                 .Property(e => e.CreatedDate);
 

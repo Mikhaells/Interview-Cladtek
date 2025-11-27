@@ -30,21 +30,16 @@
                     }
 
                     <div class="box-body">
-                        <!-- NIK -->
                         <div class="form-group">
                             <label>NIK <span class="text-red">*</span></label>
                             @Html.TextBoxFor(m => m.NIK, new { @class = "form-control", @placeholder = "Enter NIK" })
                             @Html.ValidationMessageFor(m => m.NIK, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Employee Name -->
                         <div class="form-group">
                             <label>Employee Name <span class="text-red">*</span></label>
                             @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @placeholder = "Enter employee name" })
                             @Html.ValidationMessageFor(m => m.EmployeeName, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Department - Using ViewBag -->
                         <div class="form-group">
                             <label>Department <span class="text-red">*</span></label>
                             @Html.DropDownListFor(m => m.DepartmentId,
@@ -53,8 +48,6 @@
                                 new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Position - Using Razor Variable -->
                         <div class="form-group">
                             <label>Position <span class="text-red">*</span></label>
                             @{
@@ -63,20 +56,15 @@
                             @Html.DropDownListFor(m => m.Position, positionList, "-- Select Position --", new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Position, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Email -->
                         <div class="form-group">
                             <label>Email <span class="text-red">*</span></label>
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email", @placeholder = "Enter email" })
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Allowances - Checkboxes based on Position -->
                         <div class="form-group">
                             <label>Allowances</label>
                             <div class="checkbox">
                                 @{
-                                    // Laptop checkbox available for Supervisor and Manager only
                                     bool showLaptop = Model.Position == "Supervisor" || Model.Position == "Manager" || string.IsNullOrEmpty(Model.Position);
                                 }
                                 <label>
@@ -90,7 +78,6 @@
                             </div>
                             <div class="checkbox">
                                 @{
-                                    // Meal allowance not available for Manager
                                     bool showMeal = Model.Position != "Manager" || string.IsNullOrEmpty(Model.Position);
                                 }
                                 <label>
@@ -122,16 +109,10 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
-            // Handle position change for allowance visibility
             $('#Position').change(function () {
                 var position = $(this).val();
-
-                // Laptop checkbox - available for Supervisor and Manager
                 $('#HasLaptop').prop('disabled', position !== 'Supervisor' && position !== 'Manager' && position !== '');
-
-                // Meal allowance - not available for Manager
                 $('#HasMealAllowance').prop('disabled', position === 'Manager');
-
                 if (position === 'Manager') {
                     $('#HasMealAllowance').prop('checked', false);
                 }

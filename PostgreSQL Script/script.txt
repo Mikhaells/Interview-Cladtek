@@ -1,0 +1,77 @@
+-- Create Database
+CREATE DATABASE OvertimeManagementDb;
+GO
+
+USE OvertimeManagementDb;
+GO
+
+-- Create Department Table
+CREATE TABLE Department (
+    DepartmentId INT PRIMARY KEY IDENTITY(1,1),
+    DepartmentName NVARCHAR(100) NOT NULL
+);
+
+-- Create Employee Table
+CREATE TABLE Employee (
+    EmployeeId INT PRIMARY KEY IDENTITY(1,1),
+    NIK NVARCHAR(20) NOT NULL UNIQUE,
+    EmployeeName NVARCHAR(150) NOT NULL,
+    DepartmentId INT NOT NULL,
+    Position NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    HasLaptop BIT DEFAULT 0,
+    HasMealAllowance BIT DEFAULT 0,
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    ModifiedDate DATETIME NULL,
+    FOREIGN KEY (DepartmentId) REFERENCES Department(DepartmentId)
+);
+
+-- Create Overtime Table
+CREATE TABLE Overtime (
+    OvertimeId INT PRIMARY KEY IDENTITY(1,1),
+    EmployeeId INT NOT NULL,
+    OvertimeDate DATETIME NOT NULL,
+    TimeStart DATETIME NOT NULL,
+    TimeFinish DATETIME NOT NULL,
+    ActualOTHours DECIMAL(5,2) NOT NULL,
+    CalculatedOTHours DECIMAL(5,2),
+    Description NVARCHAR(500),
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    ModifiedDate DATETIME NULL,
+    FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId)
+);
+
+-- Insert Sample Departments
+INSERT INTO Department (DepartmentName) VALUES
+('IT'),
+('Finance'),
+('Human Resource'),
+('Marketing'),
+('Operations');
+
+-- Insert Sample Employees
+INSERT INTO Employee (NIK, EmployeeName, DepartmentId, Position, Email, HasLaptop, HasMealAllowance, CreatedDate)
+VALUES
+('E001', 'John Doe', 1, 'Operator', 'john.doe@company.com', 0, 1, GETDATE()),
+('E002', 'Jane Smith', 2, 'Technician', 'jane.smith@company.com', 0, 1, GETDATE()),
+('E003', 'Bob Wilson', 1, 'Leader', 'bob.wilson@company.com', 0, 1, GETDATE()),
+('E004', 'Alice Johnson', 3, 'Supervisor', 'alice.johnson@company.com', 1, 1, GETDATE()),
+('E005', 'Charlie Brown', 4, 'Manager', 'charlie.brown@company.com', 1, 0, GETDATE()),
+('E006', 'Diana Prince', 2, 'Operator', 'diana.prince@company.com', 0, 1, GETDATE()),
+('E007', 'Edward Norton', 1, 'Technician', 'edward.norton@company.com', 0, 1, GETDATE()),
+('E008', 'Fiona Green', 5, 'Leader', 'fiona.green@company.com', 0, 1, GETDATE());
+
+-- Create Indexes
+CREATE INDEX IX_Employee_DepartmentId ON Employee(DepartmentId);
+CREATE INDEX IX_Overtime_EmployeeId ON Overtime(EmployeeId);
+CREATE INDEX IX_Overtime_OvertimeDate ON Overtime(OvertimeDate);
+
+-- Display Tables
+SELECT 'Departments:' AS '';
+SELECT * FROM Department;
+
+SELECT 'Employees:' AS '';
+SELECT * FROM Employee;
+
+SELECT 'Overtimes:' AS '';
+SELECT * FROM Overtime;

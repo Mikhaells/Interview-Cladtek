@@ -25,6 +25,7 @@ namespace OvertimeManagementApp.Controllers
             // Recent Overtimes
             var recentOvertimes = db.Overtimes
                 .Include("Employee")
+                .Include("Employee.Department")
                 .OrderByDescending(o => o.OvertimeDate)
                 .Take(5)
                 .ToList();

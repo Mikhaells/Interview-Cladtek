@@ -29,7 +29,6 @@
                     }
 
                     <div class="box-body">
-                        <!-- Employee -->
                         <div class="form-group">
                             <label>Employee <span class="text-red">*</span></label>
                             @Html.DropDownListFor(m => m.EmployeeId,
@@ -38,16 +37,12 @@
                                 new { @class = "form-control", @id = "EmployeeId" })
                             @Html.ValidationMessageFor(m => m.EmployeeId, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Overtime Date -->
                         <div class="form-group">
                             <label>Overtime Date <span class="text-red">*</span></label>
                             @Html.TextBoxFor(m => m.OvertimeDate,
                                 new { @class = "form-control", @type = "date", @id = "OvertimeDate" })
                             @Html.ValidationMessageFor(m => m.OvertimeDate, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Time Start -->
                         <div class="form-group">
                             <label>Time Start <span class="text-red">*</span></label>
                             <div class='input-group date' id='datetimeStart'>
@@ -59,8 +54,6 @@
                             </div>
                             @Html.ValidationMessageFor(m => m.TimeStart, "", new { @class = "text-red" })
                         </div>
-
-                        <!-- Time Finish -->
                         <div class="form-group">
                             <label>Time Finish <span class="text-red">*</span></label>
                             <div class='input-group date' id='datetimeFinish'>
@@ -71,23 +64,7 @@
                                 </span>
                             </div>
                             @Html.ValidationMessageFor(m => m.TimeFinish, "", new { @class = "text-red" })
-                        </div>
-
-                        <!-- Actual OT Hours (Read Only) -->
-                        <div class="form-group">
-                            <label>Actual OT Hours (Auto) <span class="text-red">*</span></label>
-                            @Html.TextBoxFor(m => m.ActualOTHours,
-                                new { @class = "form-control", @readonly = "readonly", @id = "ActualOTHours" })
-                        </div>
-
-                        <!-- Calculated OT Hours (Read Only) -->
-                        <div class="form-group">
-                            <label>Calculated OT Hours (Auto)</label>
-                            @Html.TextBoxFor(m => m.CalculatedOTHours,
-                                new { @class = "form-control", @readonly = "readonly", @id = "CalculatedOTHours" })
-                        </div>
-
-                        <!-- Description -->
+                        </div> 
                         <div class="form-group">
                             <label>Description</label>
                             @Html.TextAreaFor(m => m.Description,
@@ -115,7 +92,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            // Initialize date pickers
             $('#datetimeStart').datetimepicker({
                 format: 'HH:mm',
                 stepping: 15
@@ -125,8 +101,6 @@
                 format: 'HH:mm',
                 stepping: 15
             });
-
-            // Calculate OT Hours when time changes
             $('#TimeStart, #TimeFinish').on('change.datetimepicker', function () {
                 calculateOTHours();
             });
@@ -136,29 +110,19 @@
                 var timeFinishVal = $('#TimeFinish').val();
 
                 if (timeStartVal && timeFinishVal) {
-                    // Parse times
                     var startParts = timeStartVal.split(':');
                     var finishParts = timeFinishVal.split(':');
-
                     var startHours = parseInt(startParts[0]);
                     var startMinutes = parseInt(startParts[1]);
                     var finishHours = parseInt(finishParts[0]);
                     var finishMinutes = parseInt(finishParts[1]);
-
-                    // Convert to minutes
                     var startTotalMinutes = startHours * 60 + startMinutes;
                     var finishTotalMinutes = finishHours * 60 + finishMinutes;
-
-                    // Handle case where finish time is next day
                     if (finishTotalMinutes < startTotalMinutes) {
                         finishTotalMinutes += 24 * 60;
                     }
-
-                    // Calculate difference in hours
                     var diffMinutes = finishTotalMinutes - startTotalMinutes;
                     var diffHours = diffMinutes / 60;
-
-                    // Validate
                     if (diffHours <= 0) {
                         alert('Time Finish must be after Time Start');
                         $('#TimeFinish').val('');
@@ -174,17 +138,11 @@
                         $('#CalculatedOTHours').val('');
                         return;
                     }
-
-                    // Set actual OT hours
                     $('#ActualOTHours').val(diffHours.toFixed(2));
-
-                    // Calculate and set calculated OT hours (actual * 2)
                     var calculatedHours = diffHours * 2;
                     $('#CalculatedOTHours').val(calculatedHours.toFixed(2));
                 }
             }
-
-            // Initial calculation if form is editing
             calculateOTHours();
         });
     </script>

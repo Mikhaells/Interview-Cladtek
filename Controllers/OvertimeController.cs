@@ -37,27 +37,21 @@ namespace OvertimeManagementApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Overtime overtime)
-        {
-            if (ModelState.IsValid)
+        { 
+            decimal actualOTHours = CalculateOTHours(overtime.TimeStart, overtime.TimeFinish); 
+            if (actualOTHours > MaxOTHours)
             {
-                decimal actualOTHours = CalculateOTHours(overtime.TimeStart, overtime.TimeFinish);
+                ModelState.AddModelError("ActualOTHours", $"Maximum OT hours is {MaxOTHours} hours");
+                LoadEmployees();
+                return View(overtime);
+            } 
+            overtime.ActualOTHours = actualOTHours;
+            overtime.CalculatedOTHours = actualOTHours * 2;
+            overtime.CreatedDate = DateTime.Now;
 
-                if (actualOTHours > MaxOTHours)
-                {
-                    ModelState.AddModelError("ActualOTHours", $"Maximum OT hours is {MaxOTHours} hours");
-                    LoadEmployees();
-                    return View(overtime);
-                }
-
-                overtime.ActualOTHours = actualOTHours;
-                overtime.CalculatedOTHours = actualOTHours * 2;
-                overtime.CreatedDate = DateTime.Now;
-
-                db.Overtimes.Add(overtime);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
+            db.Overtimes.Add(overtime);
+            db.SaveChanges();
+            return RedirectToAction("Index"); 
             LoadEmployees();
             return View(overtime);
         }
@@ -77,34 +71,31 @@ namespace OvertimeManagementApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Overtime overtime)
-        {
-            if (ModelState.IsValid)
+        { 
+            decimal actualOTHours = CalculateOTHours(overtime.TimeStart, overtime.TimeFinish);
+
+            if (actualOTHours > MaxOTHours)
             {
-                decimal actualOTHours = CalculateOTHours(overtime.TimeStart, overtime.TimeFinish);
-
-                if (actualOTHours > MaxOTHours)
-                {
-                    ModelState.AddModelError("ActualOTHours", $"Maximum OT hours is {MaxOTHours} hours");
-                    LoadEmployees();
-                    return View(overtime);
-                }
-
-                var existingOvertime = db.Overtimes.Find(overtime.OvertimeId);
-                if (existingOvertime != null)
-                {
-                    existingOvertime.EmployeeId = overtime.EmployeeId;
-                    existingOvertime.OvertimeDate = overtime.OvertimeDate;
-                    existingOvertime.TimeStart = overtime.TimeStart;
-                    existingOvertime.TimeFinish = overtime.TimeFinish;
-                    existingOvertime.ActualOTHours = actualOTHours;
-                    existingOvertime.CalculatedOTHours = actualOTHours * 2;
-                    existingOvertime.Description = overtime.Description;
-                    existingOvertime.ModifiedDate = DateTime.Now;
-
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                ModelState.AddModelError("ActualOTHours", $"Maximum OT hours is {MaxOTHours} hours");
+                LoadEmployees();
+                return View(overtime);
             }
+
+            var existingOvertime = db.Overtimes.Find(overtime.OvertimeId);
+            if (existingOvertime != null)
+            {
+                existingOvertime.EmployeeId = overtime.EmployeeId;
+                existingOvertime.OvertimeDate = overtime.OvertimeDate;
+                existingOvertime.TimeStart = overtime.TimeStart;
+                existingOvertime.TimeFinish = overtime.TimeFinish;
+                existingOvertime.ActualOTHours = actualOTHours;
+                existingOvertime.CalculatedOTHours = actualOTHours * 2;
+                existingOvertime.Description = overtime.Description;
+                existingOvertime.ModifiedDate = DateTime.Now;
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            } 
 
             LoadEmployees();
             return View(overtime);
@@ -115,13 +106,21 @@ namespace OvertimeManagementApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            var overtime = db.Overtimes.Find(id);
-            if (overtime == null)
-                return Json(new { success = false, message = "Overtime not found" });
+            try
+            {
+                var overtime = db.Overtimes.Find(id);
+                if (overtime == null)
+                    return Json(new { success = false, message = "Overtime not found" }, JsonRequestBehavior.AllowGet);
 
-            db.Overtimes.Remove(overtime);
-            db.SaveChanges();
-            return Json(new { success = true, message = "Overtime deleted successfully" });
+                db.Overtimes.Remove(overtime);
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "Overtime deleted successfully" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // Calculate OT Hours
