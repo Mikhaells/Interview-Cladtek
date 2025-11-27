@@ -1,0 +1,121 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<Cladtek_Interview.Models.Employee>
+
+@{
+    ViewBag.Title = "Employee Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <h1>Employee Management <small>Manage employee data</small></h1>
+</div>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">List of Employee Data</h3>
+                    <div class="box-tools pull-right">
+                        <a href="@Url.Action("Create")" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Add New Employee
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%">#</th>
+                                <th>NIK</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Position</th>
+                                <th>Email</th>
+                                <th>Laptop</th>
+                                <th>Meal</th>
+                                <th style="width: 15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int count = (Model.PageNumber - 1) * Model.PageSize + 1;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.NIK</td>
+                                    <td>@item.EmployeeName</td>
+                                    <td>@item.Department.DepartmentName</td>
+                                    <td>@item.Position</td>
+                                    <td>@item.Email</td>
+                                    <td>
+                                        @if (item.HasLaptop)
+                                        {
+                                            <span class="label label-success">Yes</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-danger">No</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.HasMealAllowance)
+                                        {
+                                            <span class="label label-success">Yes</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-danger">No</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = item.EmployeeId })" class="btn btn-xs btn-info">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+                                        <button type="button" class="btn btn-xs btn-danger" onclick="deleteEmployee(@item.EmployeeId)">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Page @Model.PageNumber of @Model.PageCount</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+    function deleteEmployee(id) {
+        if (confirm('Are you sure you want to delete this employee?')) {
+            $.post('@Url.Action("Delete", "Employee")', { id: id }, function (data) {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            }).fail(function() {
+                alert('Error occurred while processing your request.');
+            });
+        }
+    }
+    </script>
+}

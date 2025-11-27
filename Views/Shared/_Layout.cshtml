@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Overtime Management System</title>
+
+    <!-- Bootstrap 3 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- AdminLTE 2 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/css/skins/skin-blue.min.css" />
+
+    <style>
+        body {
+            background-color: #ecf0f5;
+        }
+
+        .content {
+            padding: 15px;
+        }
+
+        .text-red {
+            color: #dd4b39;
+        }
+
+        .badge-info {
+            background-color: #0097bc;
+        }
+
+        .badge-success {
+            background-color: #00a65a;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Header -->
+        <header class="main-header">
+            <a href="@Url.Action("Index", "Home")" class="logo">
+                <span class="logo-mini"><b>OMS</b></span>
+                <span class="logo-lg"><b>Overtime</b> Management</span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+            </nav>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MAIN MENU</li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Employee")">
+                            <i class="fa fa-users"></i>
+                            <span>Employee</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Overtime")">
+                            <i class="fa fa-clock-o"></i>
+                            <span>Overtime Entry</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Content -->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0
+            </div>
+            <strong>Overtime Management System &copy; 2024</strong> PT. XYZ
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/js/adminlte.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

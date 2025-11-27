@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Cladtek_Interview.Models.Overtime>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <h1>Dashboard <small>Welcome to Overtime Management System</small></h1>
+</div>
+
+<div class="content">
+    <!-- Statistics Row -->
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua">
+                    <i class="fa fa-users"></i>
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Employees</span>
+                    <span class="info-box-number">@ViewBag.TotalEmployees</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green">
+                    <i class="fa fa-building"></i>
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Departments</span>
+                    <span class="info-box-number">@ViewBag.TotalDepartments</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow">
+                    <i class="fa fa-clock-o"></i>
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Overtime Entries</span>
+                    <span class="info-box-number">@ViewBag.TotalOvertimes</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red">
+                    <i class="fa fa-hourglass"></i>
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total OT Hours</span>
+                    <span class="info-box-number">@ViewBag.TotalOTHours</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Overtimes -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Recent Overtime Entries</h3>
+                    <div class="box-tools pull-right">
+                        <a href="@Url.Action("Index", "Overtime")" class="btn btn-box-tool">
+                            <i class="fa fa-arrow-right"></i> View All
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    @if (Model.Count() > 0)
+                    {
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Department</th>
+                                    <th>OT Date</th>
+                                    <th>Start</th>
+                                    <th>Finish</th>
+                                    <th>Actual Hours</th>
+                                    <th>Calculated Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Employee.EmployeeName</td>
+                                        <td>@item.Employee.Department.DepartmentName</td>
+                                        <td>@item.OvertimeDate.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.TimeStart.ToString("HH:mm")</td>
+                                        <td>@item.TimeFinish.ToString("HH:mm")</td>
+                                        <td><span class="badge badge-info">@item.ActualOTHours.ToString("F2")</span></td>
+                                        <td><span class="badge badge-success">@item.CalculatedOTHours.ToString("F2")</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            <i class="fa fa-info-circle"></i> No overtime entries yet.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<Cladtek_Interview.Models.Overtime>
+
+@{
+    ViewBag.Title = "Overtime Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <h1>Overtime Management <small>Manage overtime entry</small></h1>
+</div>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">List of Overtime Data</h3>
+                    <div class="box-tools pull-right">
+                        <a href="@Url.Action("Create")" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Add New Overtime
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%">#</th>
+                                <th>Employee</th>
+                                <th>Department</th>
+                                <th>OT Date</th>
+                                <th>Time Start</th>
+                                <th>Time Finish</th>
+                                <th>Actual OT Hours</th>
+                                <th>Calculated OT Hours</th>
+                                <th style="width: 15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int count = (Model.PageNumber - 1) * Model.PageSize + 1;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.Employee.EmployeeName</td>
+                                    <td>@item.Employee.Department.DepartmentName</td>
+                                    <td>@item.OvertimeDate.ToString("dd/MM/yyyy")</td>
+                                    <td>@item.TimeStart.ToString("HH:mm")</td>
+                                    <td>@item.TimeFinish.ToString("HH:mm")</td>
+                                    <td>
+                                        <span class="badge badge-info">@item.ActualOTHours.ToString("F2")</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-success">@item.CalculatedOTHours.ToString("F2")</span>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = item.OvertimeId })" class="btn btn-xs btn-info">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+                                        <button type="button" class="btn btn-xs btn-danger" onclick="deleteOvertime(@item.OvertimeId)">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Page @Model.PageNumber of @Model.PageCount</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function deleteOvertime(id) {
+            if (confirm('Are you sure you want to delete this overtime entry?')) {
+                $.post('@Url.Action("Delete")', { id: id }, function (data) {
+                    if (data.success) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                });
+            }
+        }
+    </script>
+}
